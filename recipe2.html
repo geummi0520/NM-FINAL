@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>참치포케 레시피</title>
+    <style>
+
+
+    @font-face {
+    font-family: 'SBAggroB';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'neurimboGothicRegular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/neurimboGothicRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 폰트 적용 */
+body {
+    font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f9f9f9;
+}
+
+        /* Top navigation bar styling */
+        .topnav {
+            font-family: 'neurimboGothicRegular';
+            background-color: #ffffff;
+            overflow: hidden;
+            height: 120px;
+            width: 100%;
+            padding: 0px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .topnav img {
+            height: 120px;
+            margin : 0 100px;
+            justify-content: center;
+        }
+
+        .topnav a {
+            color: #2a446b;
+            text-decoration: none;
+            font-size: 18px;
+            margin-left: 25px;
+            
+        }
+
+        .topnav a:hover {
+            text-decoration: underline;
+        }
+
+     
+        h2{
+            
+            text-align: left;
+            color: #2a446b;
+            font-size: 30px;
+            margin-top: 40px;
+            margin-left: 25px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            margin: 20px 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .info{
+            align-items: left;
+            margin-left: 4%;
+            width: 70%;
+        }
+
+        .topcon{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 8%;
+        }
+
+        .topcon img{
+            width : 50%;
+        }
+
+        h1 {
+            font-size: 2rem;
+            text-align: left;
+            margin : 40px 8% 10px 8%;
+        }
+        .author {
+            text-align: left;
+            font-size: 0.9rem;
+            color: gray;
+            margin : 15px 8%;
+        }
+        .tags {
+            text-align: left;
+            margin: 15px 7%;
+        }
+        .tag {
+            display: inline-block;
+            padding: 7px 12px;
+            border : 0.1px, solid, #cfcfcf;
+            margin: 0 5px;
+            background-color: #dbe0eb81;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .tag span{
+            padding:10px;
+        }
+        .recipe-image {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .recipe-image img {
+            width: 200px;
+            border-radius: 8px;
+            margin-left: 20px;
+        }
+        .ingredients, .instructions {
+            margin: 20px 0;
+        }
+        h2 {
+            font-size: 1.5rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin : 20px 7%;
+        }
+        ul li {
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+        ol {
+            margin : 20px 7%;
+            padding-left: 20px;
+        }
+        ol li {
+            margin: 5px 0;
+            line-height: 1.8;
+        }
+        .comment-section {
+            margin-top: 30px;
+        }
+        .comment-section input {
+            width: 82%;
+            height: 60px;
+            padding: 10px;
+            margin : 0 7% 50px 7%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+
+@media screen and (max-width:600px){
+ 
+.topcon {
+          flex-direction: column;
+        }
+}
+
+    </style>
+</head>
+
+
+
+<body>
+  <div class="topnav">
+    <div>
+      <a href="FINAL.html">HOME</a>
+      <a href="recipe_index.html">RECIPES</a>
+    </div>
+    <b href="FINAL.html">
+      <img src="로고_수정3.png" alt="Logo">
+    </b>
+    <div>
+      <a href="myfridge.html">MY FRIDGE</a>
+      <a href="login.html">LOGIN</a>
+    </div>
+</div>
+<div class="container">
+    <div class="topcon">
+        <div class="info">
+    <h1>참치 포케</h1>
+    <p class="author">작성자: 관리자</p>
+    <div class="tags">
+        <span class="tag">도시락</span>
+        <span class="tag">밥</span>
+        <span class="tag">다이어트</span>
+    </div>
+</div>
+    <div class="recipe-image">
+        <img src="참치포케.png" alt="참치포케">
+    </div>
+</div>
+    <div class="ingredients">
+        <h2>재료 (1인분)</h2>
+        <ul>
+            <li>양상추 2줌</li>
+            <li>양파 1/4개</li>
+            <li>토마토 1/2개</li>
+            <li>참치 1캔(100g)</li>
+            <li>밥 100g</li>
+            <li>알룰로스 1숟가락</li>
+            <li>마요네즈 1숟가락</li>
+            <li>참기름 1숟가락</li>
+            <li>식초 1숟가락</li>
+            <li>간장 1숟가락</li>
+            <li>소금 1꼬집</li>
+        </ul>
+    </div>
+
+    <div class="instructions">
+        <h2>조리 순서</h2>
+        <ol>
+            <li>양상추 2줌을을 씻어서 물기 털어주고, 양파 1/4개 얇게 채 썬다.</li>
+            <li>토마토 1/2개 작게 깍둑 썰고, 오이는 취향껏 반달 썬다.</li>
+            <li>기름 뺀 참치 1캔(100g)에 알룰로스 1숟가락, 저칼로리 마요네즈 1숟가락 넣는다.</li>
+            <li>간장 1숟가락을 넣고 참치와 소스를 잘 섞는다.</li>
+            <li>그릇에 밥 크게 4숟가락(100g) 넣고, 참기름 1숟가락, 식초 1숟가락, 소금 한 꼬집을 넣어 잘 섞는다.</li>
+        </ol>
+    </div>
+    <div class="comment-section">
+        <h2>댓글</h2>
+        <input type="text" placeholder="댓글을 입력해주세요.">
+    </div>
+</div>
+
+</body>
+</html>

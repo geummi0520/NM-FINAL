@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+
+    @font-face {
+    font-family: 'SBAggroB';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'neurimboGothicRegular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/neurimboGothicRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Paperlogy-8ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* 폰트 적용 */
+body {
+    font-family: 'neurimboGothicRegular';
+}
+
+.topnav {
+    background-color: #ffffff;
+    overflow: hidden;
+    height: 120px;
+    padding: 0px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.topnav img {
+    height: 120px;
+    margin : 0 100px;
+    justify-content: center;
+}
+
+.topnav a {
+    color: #2a446b;
+    text-decoration: none;
+    font-size: 18px;
+    margin-left: 25px;
+}
+
+.topnav a:hover {
+    text-decoration: underline;
+}
+
+.searchbar {
+    background-color: rgb(203, 215, 228);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;            
+    position: relative;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    width: 70%; 
+    margin-right: 10px; 
+    border: 1px solid grey;
+    border-radius: 25px;
+    padding-right: 50px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.image-container {
+    position: relative;
+    width : 50%;
+}
+
+#fridgeImage {
+    top: 0;
+    left: 0;
+    width : 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* 냉장고 이미지가 아래에 표시 */
+}
+
+.overlay-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width : 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2; /* 투명 이미지 */
+    pointer-events: none; /* 클릭 불가 */
+}
+
+
+.search-icon {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.search-container input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 17px;
+}
+
+.searchbar .search-icon {
+    background-color: #ffffff00;
+    padding: 10px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin : 0 10px;   
+}
+
+        .searchbar .search-icon img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .clear-btn {
+            left : 2%;
+            cursor: pointer;
+            color: grey;
+            font-weight: bold;
+
+        }
+
+        /* 필터 버튼 및 목록 스타일 */
+        .filter-container {
+          top : 55%;
+          position: absolute;
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          gap: 10px;
+          padding-top: 10px;
+        }
+
+        .filter-btn {
+
+            border: none;
+            background-color: rgba(255, 255, 255, 0);
+            cursor: pointer;
+            width: 25px;
+            height: 25px;
+
+        }
+
+        .filter-btn img {
+            width: 25px;
+            height: 25px;
+        }
+
+        .filter-list {
+            margin-left: 33.7%;
+            margin-top: 0.5rem;
+            padding-right: 10%;
+            display: none;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-list.active {
+            display: flex;
+        }
+
+        .filter {
+          font-family: 'omyu_pretty';
+          font-size: 18px;
+            padding: 8px 12px;
+            border: 1px solid grey;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+            color: #000;
+            cursor: pointer;
+            display: flex;
+            align-items: left;
+            transition: background-color 0.3s;
+        }
+
+        /* 활성화된 필터 스타일 */
+        .filter.active {
+            background-color: #0054ff;
+            color: #fff;
+            justify-content: center;
+        }
+
+        /* 비활성화 필터만 hover 시 회색 */
+        .filter:not(.active):hover {
+            background-color: #ddd;
+        }
+
+        .filter .close-btn {
+            cursor: pointer;
+            font-weight: bold;
+            display: none;
+            padding-top: 0px;
+            font-size: 13px;
+        }
+
+        .filter.active .close-btn {
+            display: inline;
+        }
+
+        .filter .not-btn {
+            display: none;
+            font-weight: bold;
+            margin-left: auto;
+            cursor: pointer;
+        }
+
+        /* 필터 호버 시 '-' 버튼만 활성화 */
+        .filter:not(.active):hover .not-btn {
+            display: inline-block;
+        }
+
+        /* Grid container styling */
+        .grid {
+            font-family: 'Paperlogy-8ExtraBold';
+            color: #2d4263;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            padding: 0 5% 40px 5%;
+        }
+
+        .grid-item {
+
+            position: relative;
+            width: calc(33% - 15px); /* Width of each grid item */
+            aspect-ratio: 3 / 2;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .grid-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 254, 254, 0.6); /* Semi-transparent black overlay */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 15px; /* Match the grid-item's border radius */
+        }
+
+        /* Show overlay on hover */
+        .grid-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .grid-item .overlay a{
+            color :rgb(2, 0, 0);
+            font-size: 22px;
+        }
+
+        h2{
+            text-align: left;
+            color: #2a446b;
+            font-size: 30px;
+            margin-top: 40px;
+            margin-left: 25px;
+        }
+
+
+@media screen and (min-width:900px){
+  .grid{margin : 0 7%;}
+  .searchbar{padding : 0 7%;}
+  h2{
+    margin : 40px 8%;
+  }
+
+
+}
+
+@media screen and (max-width:900px){
+  .searchbar{padding : 0 7%; height: 400px;
+  }
+  .image-container {
+    position: relative;
+    width : 60%;
+}
+  .grid-item {
+position: relative;
+width: calc(50% - 20px); /* Width of each grid item */
+aspect-ratio: 3 / 2;
+overflow: hidden;
+border-radius: 15px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+}
+
+
+@media screen and (max-width:600px){
+  .searchbar{padding : 0 10% 10% 10%; height: 31rem; flex-direction: column;margin-bottom: 5%;}
+  .search-container{margin-top: 0px;}
+  .image-container {
+    position: relative;
+    width : 80%;
+}
+  .filter-btn img {
+    margin-top: 15px;
+    margin-left: 190px;
+    width: 25px;
+    height: 25px;
+  }
+  .filter-list{margin-left: 12%; margin-top: 7rem; margin-right:50px;bottom:70%}
+
+  .grid-item {
+position: relative;
+width: calc(80%); /* Width of each grid item */
+aspect-ratio: 3 / 2;
+overflow: hidden;
+border-radius: 15px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.filter-container {
+          top : 18rem;
+          position: absolute;
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          gap: 10px;
+          padding-top: 10px;
+        }
+}
+
+    </style>
+</head>
+
+
+
+<body>
+  <div class="topnav">
+      <div>
+        <a href="FINAL.html">HOME</a>
+        <a href="recipe_index.html">RECIPES</a>
+      </div>
+      <b href="FINAL.html">
+        <img src="로고_수정3.png" alt="Logo">
+      </b>
+      <div>
+        <a href="myfridge.html">MY FRIDGE</a>
+        <a href="login.html">LOGIN</a>
+      </div>
+  </div>
+
+  <div class="searchbar">
+    <div class="image-container">
+        <img id="fridgeImage" src="rfi.png" alt="fridge">
+    </div>
+      <div class="search-container">
+          <div class="search-icon">
+              <img src="search.png" alt="Search">
+          </div>
+          <input type="text" id="searchInput" placeholder="Enter words separated by space...">
+          <div class="clear-btn" id="clearBtn">✕ </div>
+          
+      </div>
+      <button class="filter-btn" id="toggleFilters">
+        <img src="filter (1).png" alt="filter">
+      </button>
+
+      <div class="filter-container">
+          
+        <div class="filter-list" id="filterList">
+            <div class="filter" data-text="도시락">도시락<span class="close-btn">ㅤ✕</span><span class="not-btn">-</span></div>
+            <div class="filter" data-text="전자레인지">전자레인지<span class="close-btn">ㅤ✕</span><span class="not-btn">-</span></div>
+            <div class="filter" data-text="간편 요리">간편 요리<span class="close-btn">ㅤ✕</span><span class="not-btn">-</span></div>
+            <div class="filter" data-text="밥">밥<span class="close-btn">ㅤ✕</span><span class="not-btn">-</span></div>
+            <div class="filter" data-text="디저트">디저트<span class="close-btn">ㅤ✕</span><span class="not-btn">-</span></div>
+            <div class="filter" data-text="면">면<span class="close-btn">ㅤ✕</span><span class="not-btn">-</span></div>
+            <div class="filter" data-text="밀가루">밀가루<span class="close-btn">ㅤ✕</span><span class="not-btn">-</span></div>
+            <div class="filter" data-text="저당">저당<span class="close-btn">ㅤ✕</span><span class="not-btn">-</span></div>
+        </div>
+  
+      </div>
+      
+  </div>
+
+    <h2>Popular Recipes</h2>
+
+    <div class="grid">
+      <div class="grid-item">
+          <img src="우삼겹.png" alt="Recipe 1">
+          <div class="overlay">
+            <a href="recipe1.html">우삼겹 메밀면</a></div>
+      </div>
+      <div class="grid-item">
+          <img src="참치포케.png" alt="Recipe 2">
+          <div class="overlay">
+            <a href="recipe2.html">참치 포케</a>
+          </div>
+      </div>
+      <div class="grid-item">
+          <img src="떡볶이.webp" alt="Recipe 3">
+          <div class="overlay">
+            <a href="recipe3.html">떡볶이</a>
+          </div>
+      </div>
+      <div class="grid-item">
+          <img src="https://static.wtable.co.kr/image/production/service/recipe/1967/bfbec835-45b4-4e15-a658-ec4f1947ba2e.jpg?size=800x800" alt="Recipe 4">
+          <div class="overlay">
+            <a href="recipe4.html">치즈밥</a>
+        </div>
+      </div>
+      <div class="grid-item">
+          <img src="김볶밥.jpeg" alt="Recipe 5">
+          <div class="overlay">
+            <a href="recipe5.html">김치볶음밥</a>
+          </div>
+      </div>
+      <div class="grid-item">
+          <img src="묵참김밥.jpg" alt="Recipe 6">
+          <div class="overlay">
+            <a href="recipe6.html">묵은지 참치김밥</a>
+          </div>
+      </div>
+  </div>
+
+  <script>
+    // 서치바 X 버튼 기능
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearBtn');
+
+    clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+    });
+
+    // 필터 버튼 기능
+    const toggleFilters = document.getElementById('toggleFilters');
+    const filterList = document.getElementById('filterList');
+
+    toggleFilters.addEventListener('click', () => {
+        filterList.classList.toggle('active');
+    });
+
+    // 필터 기능
+    document.querySelectorAll('.filter').forEach(filter => {
+        const closeBtn = filter.querySelector('.close-btn');
+        const notBtn = filter.querySelector('.not-btn');
+        let isNot = false;
+
+        filter.addEventListener('click', () => {
+            filter.classList.toggle('active');
+        });
+
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            filter.classList.remove('active');
+            isNot = false;
+            filter.textContent = filter.dataset.text;
+            filter.appendChild(closeBtn);
+            filter.appendChild(notBtn);
+        });
+
+        notBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            isNot = !isNot;
+            filter.textContent = isNot ? `NOT ${filter.dataset.text}` : filter.dataset.text;
+            filter.appendChild(closeBtn);
+            filter.appendChild(notBtn);
+        });
+    });
+
+const imageContainer = document.querySelector('.image-container');
+
+// 투명 이미지 목록 (rfi.png와 동일한 크기)
+const overlayImages = ['overlay1.png','overlay2.png','overlay3.png','overlay4.png','overlay5.png','overlay6.png','overlay7.png','overlay8.png','overlay9.png','overlay10.png'];
+
+// 배열을 랜덤 섞기 (Fisher-Yates Shuffle)
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+// 기존 오버레이 제거
+function clearOverlayImages() {
+    document.querySelectorAll('.overlay-image').forEach(img => img.remove());
+}
+
+// 단어 개수에 맞게 고정 이미지 추가
+function addOverlayImages(wordCount) {
+    clearOverlayImages();
+
+    for (let i = 0; i < wordCount; i++) {
+        if (i < overlayImages.length) {
+            const overlayImage = document.createElement('img');
+            overlayImage.src = overlayImages[i];
+            overlayImage.alt = 'overlay';
+            overlayImage.className = 'overlay-image';
+            imageContainer.appendChild(overlayImage);
+        }
+    }
+}
+
+// 검색창 입력 이벤트
+searchInput.addEventListener('input', () => {
+    const words = searchInput.value.trim().split(/\s+/); // 단어 배열
+    const wordCount = words.filter(word => word).length; // 공백 제외 단어 수
+
+    if (wordCount === 0) {
+        // 단어가 없으면 오버레이 삭제 후 배열 순서 랜덤화
+        clearOverlayImages();
+        shuffleArray(overlayImages);
+    } else {
+        // 단어 개수에 맞게 이미지 추가
+        addOverlayImages(wordCount);
+    }
+});
+
+  </script>
+</body>
+</html>

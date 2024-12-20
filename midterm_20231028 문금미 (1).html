@@ -1,0 +1,140 @@
+<!--절대 서로 말하지 말기. 이슈 있으면 조용히 손을 듭니다.
+다하고 나면 본인 이름과 id 넘버 포함하여 파일 이름 다시 저장
+반드시 ‘.html’확장자 확인. 다운받았던 곳에 다시 올리고 잘 올라갔나 확인하고 강의실을 떠납니다~ 
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>refridgepedia</title>
+<!--문제1. 본 웹페이지의 제목(title)을 'MIDTERM'이라고 지정하시오.-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/* (팁: <body> 부분 끝내고 돌아오는 것이 나을 겁니다.)*/
+/* 문제2. 'box-sizing' css 속성을 지정해서, 브라우저에게 우리가 가진 모든 html 요소의
+너비와 높이를 지정할 때 테두리(border)와 안쪽 여백(padding)을 포함해서 계산하도록 지시하시오.*/
+*{box-sizing: border-box;}
+
+/* 문제3. html 스타일링(css): font-family는 arial, margin은 0, font-size 은 16px */
+html{font-size: 16px;}
+body{font-family: Arial; margin: 0;}
+
+.header{padding: 20px; background-color: lightblue; font-size: 1.2rem; color: white; text-align: center;}
+
+/* 문제4. "header"라는 클래스 이름의 div 스타일링; padding 20px,
+background color는 lightskyblue, font size 는 html font-size의 1.2배,텍스트 컬러는 white ,
+텍스트 중앙 정렬(align text center)*/
+
+.navbar{display:flex; flex-wrap:wrap; background-color: #333;}
+.navbar a{flex:25%; padding: 14px 20px;font-size: 1.2vw;color: white; text-align:center;text-decoration: none;}
+.navbar a:hover{background-color: lightgray; color: black;}
+
+/* 문제5. 상단 네비게이션 바 스타일링: display 방식 지정, 시작 배경 색은 #333*/
+
+/* 문제6. 내비게이션 바 링크 스타일링:
+ padding: 14px 20px; 4개의 링크는 동일한 너비로, 고르게 분포되어야 함,
+텍스트는 중앙에 정렬하고, 텍스트 장식은 없도록,
+글꼴 크기는 뷰포트 너비의 1.2%, 색상은 흰색으로 지정*/
+
+
+/* 문제7. 내비게이션 링크에 hover 효과 추가: 배경 색상은 밝은 회색, 텍스트 색상은 검은색*/
+
+
+.row{display: flex; flex-wrap: wrap; flex-direction: row;}
+.main{flex: 70%; background-color: white; padding: 20px;}
+.side{flex: 30%;background-color: white; padding: 20px;}
+.row p{font-size: 1.2rem;}
+.row p span{font-weight: bold;color: navy;}
+
+@media screen and (max-width:700px){
+  .row{flex-direction: column;}
+  .navbar{flex-direction: column;}
+  .navbar a{font-size: 1.2rem;}
+  .row p{font-size: 1.25rem;}
+}
+
+
+/* 문제8. 이제 콘텐츠를 스타일링하시오.
+"row", "side" 및 "main"을 스타일링. "row"는 두 개의 불균형한 칼럼, 즉 "side"와 "main"을 포함하고 있으며,
+이 칼럼들은 서로 나란히 배치됩니다.
+기본적으로 "side"와 "main"의 너비 비율은 3:7입니다.
+"side"와 "main" 칼럼 모두 흰색 배경과 20px 패딩을 가집니다.*/
+
+/* 문제9. "row" div 내의 p 태그의 글꼴 크기는 HTML 기본 글꼴 크기의 1.2배,
+p 태그 안에는 굵은 글씨체와 네이비 색상 폰트가 포함됩니다. 텍스트는 더미 텍스트로, 네이비 색 텍스트도
+특정 텍스트일 필요 없음.*/
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  font-size: 1.5rem;
+   /* 문제10. 글꼴 크기는 HTML 기본 글꼴 크기의 1.5배*/
+}
+
+/* 문제11. 반응형 레이아웃 - 화면 너비가 700px 미만일 때, 두 개의 칼럼이 나란히가 아닌 쌓이도록 하시오,
+내비게이션 링크 텍스트의 글꼴 크기는 HTML 기본 글꼴 크기의 1.2배로,
+p 태그의 글꼴 크기는 HTML 기본 글꼴 크기의 1.25배로 변경하시오.*/
+ 
+</style>
+</head>
+<body>
+  <!-- 문제12. 이 h1 태그를 클래스 이름이 "header"인 div 안에 넣으시오 -->
+  <div class="header">
+    <h1>My Website</h1>
+  </div>
+
+<!-- 문제13. 이 링크들을 클래스 이름이 "navbar"인 div 안에 넣으시오 -->
+ <div class = "navbar">
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  <a href="#">Link 4</a>
+ </div>
+
+<!-- 이제 이것은 '콘텐츠' 섹션이며, 푸터 섹션 전에 나옵니다. 
+문제14. 적절한 클래스 이름을 가진 div를 만들고, 아래의 콘텐츠를 적절히 넣으시오.
+전체 '콘텐츠'는 클래스 이름이 "row"인 div 안에 있으며,
+"row" div는 "main"과 "side"라는 자식 div를 가집니다. -->
+<div class="row">
+  <div class="side">
+    <h2>Heading 2</h2>
+    <h5>Title description</h5>
+    <!-- 문제15. 외부 소스의 펭귄 이미지를 인터넷에서 가져오고, 이미지의 너비가 그의 부모 요소의 너비를 채우도록 설정하시오 -->
+    <img src="https://flexible.img.hani.co.kr/flexible/normal/640/427/imgdb/original/2023/0825/20230825501217.jpg" style="width:100%;">
+
+    <p>Some text <span>about me in</span> qui officia deserunt mollit anim..</p> 
+    <!-- 문제16. p 태그 안에 굵은 네이비 텍스트가 있는 더미 텍스트 추가 -->
+
+    <h3>More Text</h3>
+    <p>Lorem ipsum dolor sit ame.</p>
+    <!-- 문제17. 외부 소스의 펭귄 이미지를 인터넷에서 가져오고, 이미지의 너비가 그의 부모 요소의 너비를 채우도록 설정하시오.-->
+    <img src="https://imgnn.seoul.co.kr/img/upload/2020/08/18/SSI_20200818152435.jpg" style="width:100%;">
+  </div>
+  
+  <div class="main">
+    <h2>Main HEADING</h2>
+    <h5>Title description, Oct 25, 2022</h5>
+    <!-- 문제18. 외부 소스의 펭귄 이미지를 인터넷에서 가져오고, 이미지의 너비가 그의 부모 요소의 너비를 채우도록 설정하시오 -->
+    <img src="https://i.namu.wiki/i/u2B6On7f7tF-Vvxc5nxYybqM1iDHybdDuPvjVymgRscHMQkRGnVrMQOKQossA5zoalemgJN2U60o4w0uUCEKRw.webp" style="width:100%;">
+
+
+    <p>Sunt in culpa laborum consectetur adipiscing elit, <span>navy</span> sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <!-- 문제19. p 태그 안에 굵은 네이비 텍스트 추가, 어떤 텍스트든 상관없음 -->
+
+    <br>
+    <h2>TITLE HEADING</h2>
+    <h5>Title description, Sep 4, 2022</h5>
+    <!-- 문제20. 외부 소스의 펭귄 이미지를 인터넷에서 가져오고, 이미지의 너비가 그의 부모 요소의 너비를 채우도록 설정하시오-->
+    <img src="https://www.greenpostkorea.co.kr/news/photo/201901/100657_97603_2611.jpg" style="width:100%;">
+    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY FRIDGE</title>
+    <style>
+
+    @font-face {
+    font-family: 'SBAggroB';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    
+}
+
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'neurimboGothicRegular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/neurimboGothicRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Paperlogy-8ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+
+
+        /* Top navigation bar styling */
+        .topnav {
+            font-family: 'neurimboGothicRegular';            
+            background-color: #ffffff;
+            overflow: hidden;
+            height: 120px;
+            width: 100%;
+            padding: 0px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .topnav img {
+            height: 120px;
+            margin : 0 100px;
+            justify-content: center;
+        }
+
+        .topnav a {
+            color: #2a446b;
+            text-decoration: none;
+            font-size: 18px;
+            margin-left: 25px;
+            
+        }
+
+        .topnav a:hover {
+            text-decoration: underline;
+        }
+
+     
+        h2{
+            text-align: left;
+            color: #2a446b;
+            font-size: 30px;
+            margin-top: 40px;
+            margin-left: 25px;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f8fa;
+            color: #333;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .container {
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 7%;
+            padding: 20px;
+        }
+
+
+        .fridge {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .fridge-image {
+            width: 50%;
+        }
+
+        .fridge-image img {
+            width: 100%;
+        }
+
+        .items {
+            width: 50%;
+        }
+
+        .item {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-content p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            width: 90%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #ff6b6b;
+            border-radius: 5px;
+        }
+
+        .progress.green {
+            background-color: #4caf50;
+        }
+
+        .more-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .more-button button {
+            padding: 10px 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .more-button button:hover {
+            background-color: #f1f1f1;
+        }
+
+        .recipes {
+            margin-top: 80px;
+        }
+
+
+        .recipes .placeholder {
+            width: 100%;
+            height: 90%;
+            background-color: #ffffff;
+            border-radius: 10px;
+            margin-top: 20px;
+            padding: 50px 0;
+            margin-bottom: 50px;
+
+        }
+
+
+         /* Grid container styling */
+         .grid {
+            font-family: 'Paperlogy-8ExtraBold';
+            color: #2d4263;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            padding: 0 5%;
+        }
+
+        .grid-item {
+
+            position: relative;
+            width: calc(33% - 15px); /* Width of each grid item */
+            aspect-ratio: 3 / 2;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .grid-item .overlay {
+            font-family: 'Paperlogy-8ExtraBold';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 254, 254, 0.6); /* Semi-transparent black overlay */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 15px; /* Match the grid-item's border radius */
+        }
+
+        /* Show overlay on hover */
+        .grid-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .grid-item .overlay a{
+            color :rgb(2, 0, 0);
+            font-size: 22px;
+        }
+
+        
+@media screen and (max-width:600px){
+    .container {
+            flex-direction: column;
+        }
+
+        .fridge-image {
+            width: 70%;
+        }
+
+}
+
+
+</style>
+
+
+<body>
+    <div class="topnav">
+        <div>
+          <a href="FINAL.html">HOME</a>
+          <a href="recipe_index.html">RECIPES</a>
+        </div>
+        <b href="FINAL.html">
+          <img src="로고_수정3.png" alt="Logo">
+        </b>
+        <div>
+          <a href="myfridge.html">MY FRIDGE</a>
+          <a href="login.html">LOGIN</a>
+        </div>
+    </div>
+  
+    <div class="container">
+        <h2>My Fridge</h2>
+
+        <div class="fridge">
+            <div class="fridge-image">
+                <img src="rfi.png" alt="Fridge Image">
+            </div>
+
+            <div class="items">
+                <div class="item">
+                    <div class="item-content">
+                        <p><strong>비비고 고등어</strong></p>
+                        <p>소비 기한: D-7 (~2024.12.27 FRI)</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-content">
+                        <p><strong>상추</strong></p>
+                        <p>소비 기한: D-10 (~2024.12.30 MON)</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-content">
+                        <p><strong>하림 닭가슴살</strong></p>
+                        <p>소비 기한: D-21 (~2025.01.10 FRI)</p>
+                        <div class="progress-bar">
+                            <div class="progress green" style="width: 20%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="more-button">
+            <button>더 보기</button>
+        </div>
+
+        <div class="recipes">
+            <h2>Recipes Recommended</h2>
+            <div class="placeholder">
+                <div class="grid">
+                    <div class="grid-item">
+                        <img src="솥밥.jpg" alt="Recipe 1">
+                        <div class="overlay">
+                          <a href="recipe1.html">고등어 솥밥</a></div>
+                    </div>
+                    <div class="grid-item">
+                        <img src="고등어조림.webp" alt="Recipe 2">
+                        <div class="overlay">
+                          <a href="recipe2.html">고등어 조림</a>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <img src="볶음밥.webp" alt="Recipe 3">
+                        <div class="overlay">
+                          <a href="recipe3.html">닭가슴살 볶음밥</a>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <img src="참야비.jpeg" alt="Recipe 4">
+                        <div class="overlay">
+                          <a href="recipe4.html">참치야채비빔밥</a>
+                      </div>
+                    </div>
+                    <div class="grid-item">
+                        <img src="상추무침.jpg" alt="Recipe 5">
+                        <div class="overlay">
+                          <a href="recipe5.html">상추 겉절이</a>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <img src="닭샐.jpg" alt="Recipe 6">
+                        <div class="overlay">
+                          <a href="recipe6.html">닭가슴살 샐러드드</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
