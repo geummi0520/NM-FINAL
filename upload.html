@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload</title>
+    <style>
+
+@font-face {
+    font-family: 'Paperlogy-8ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'omyu_pretty';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'neurimboGothicRegular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/neurimboGothicRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 폰트 적용 */
+body {
+    font-family: 'neurimboGothicRegular';
+}
+
+        /* Top navigation bar styling */
+        .topnav {
+            background-color: #ffffff;
+            overflow: hidden;
+            height: 120px;
+            padding: 0px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .topnav img {
+            height: 120px;
+            margin : 0 100px;
+            justify-content: center;
+        }
+
+        .topnav a {
+            color: #2a446b;
+            text-decoration: none;
+            font-size: 18px;
+            margin-left: 25px;
+            
+        }
+        /*폰트변경 필요*/
+
+        .topnav a:hover {
+            text-decoration: underline;
+        }
+
+     
+        h2{
+            font-family: 'Paperlogy-8ExtraBold';
+            text-align: left;
+            color: #2a446b;
+            font-size: 30px;
+            margin-top: 40px;
+        }
+
+    .upload{
+        font-family: 'Paperlogy-8ExtraBold';
+        margin: 0 7%;
+    }
+
+
+@media screen and (min-width:900px){
+  .grid{margin : 0 7%;}
+  .searchbar{padding : 0 7%;}
+  h2{
+    margin : 40px 8%;
+  }
+
+
+}
+
+@media screen and (max-width:900px){
+  .searchbar{padding : 0 7%; height: 400px;
+  }
+  .grid-item {
+position: relative;
+width: calc(50% - 20px); /* Width of each grid item */
+aspect-ratio: 3 / 2;
+overflow: hidden;
+border-radius: 15px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+}
+
+
+@media screen and (max-width:600px){
+  .searchbar{padding : 0 10% 10% 10%; height: 31rem; flex-direction: column;margin-bottom: 5%;}
+  .searchbar img{width: 80%;}
+  .search-container{margin-top: 0px;}
+  .filter-btn img {
+    margin-top: 15px;
+    margin-left: 190px;
+    width: 25px;
+    height: 25px;
+  }
+  .filter-list{margin-left: 12%; margin-top: 7rem; margin-right:50px;bottom:70%}
+
+  .grid-item {
+position: relative;
+width: calc(80%); /* Width of each grid item */
+aspect-ratio: 3 / 2;
+overflow: hidden;
+border-radius: 15px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.filter-container {
+          top : 18rem;
+          position: absolute;
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          gap: 10px;
+          padding-top: 10px;
+        }
+}
+
+    </style>
+</head>
+
+
+
+<body>
+  <div class="topnav">
+    <div>
+        <a href="index.html">HOME</a>
+        <a href="recipe_index.html">RECIPES</a>
+      </div>
+      <b href="index.html">
+        <img src="로고_수정3.png" alt="Logo">
+      </b>
+      <div>
+        <a href="#about">ABOUT</a>
+        <a href="login.html">LOGIN</a>
+      </div>
+  </div>
+  <h2>Upload Recipes</h2>
+  <div class="upload">
+  <form id="upload-form">
+      <label for="title">Recipe Name:</label>
+      <input type="text" id="title" name="title" required><br><br>
+
+      <label for="ingredients">Ingredients(Divide with Commas): </label>
+      <input type="text" id="ingredients" name="ingredients" required><br><br>
+
+      <label for="instructions">How to Cook: </label>
+      <textarea id="instructions" name="instructions" required></textarea><br><br>
+
+      <button type="submit">업로드</button>
+  </form>
+</div>
+
+  <p id="upload-message"></p>
+
+  <script>
+      document.getElementById('upload-form').addEventListener('submit', function(event) {
+          event.preventDefault();
+
+          const title = document.getElementById('title').value;
+          const ingredients = document.getElementById('ingredients').value.split(',');
+          const instructions = document.getElementById('instructions').value;
+
+          fetch('/upload', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  title: title,
+                  ingredients: ingredients,
+                  instructions: instructions
+              })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  document.getElementById('upload-message').textContent = '레시피가 업로드되었습니다!';
+              } else {
+                  document.getElementById('upload-message').textContent = '업로드 실패: ' + data.error;
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              document.getElementById('upload-message').textContent = '업로드 중 오류 발생';
+          });
+      });
+  </script>
+</body>
+</html>
+
